@@ -1,5 +1,5 @@
 CREATE TABLE Cliente (
-  cod_cliente NUMBER(5) PRIMARY KEY,
+  cod_cliente NUMBER(5) CONSTRAINT PK_cli PRIMARY KEY,
   nome_cliente VARCHAR2(30),
   endereco VARCHAR2(25),
   cidade VARCHAR2(20),
@@ -26,4 +26,11 @@ CREATE TABLE Pedido(
     prazo_entrega DATE,
     cod_cliente NOT NULL REFERENCES Cliente,
     cod_vendedor NOT NULL REFERENCES Vendedor
+);
+
+CREATE TABLE Item_Pedido(
+    cod_produto NOT NULL REFERENCES Produto,
+    num_pedido NOT NULL REFERENCES Pedido,
+    quantidade NUMBER(5, 0),
+    PRIMARY KEY(cod_produto, num_pedido)
 );
