@@ -2,19 +2,19 @@
 Tabela Cliente
 */
 
-INSERT INTO Cliente (cod_cliente, nome_cliente, endereco, cidade, cep, estado)
+INSERT INTO Cliente (cod_cliente, nome_cliente, endereco, cidade, cep, UF)
 VALUES ('00001', 'Alex Afonso', 'Campestre', 'Pilar do Sul', '18185-000', 'sp');
 
-INSERT INTO Cliente (cod_cliente, nome_cliente, endereco, cidade, cep, estado)
+INSERT INTO Cliente (cod_cliente, nome_cliente, endereco, cidade, cep, UF)
 VALUES ('00002', 'Guxtavo', 'Centro', 'Sorocaba', '18181-000', 'sp' );
 
-INSERT INTO Cliente (cod_cliente, nome_cliente, endereco, cidade, cep, estado)
+INSERT INTO Cliente (cod_cliente, nome_cliente, endereco, cidade, cep, UF)
 VALUES ('00003', 'Andure', 'Vargem grande', 'Paulista', '18183-000', 'sp');
 
-INSERT INTO Cliente (cod_cliente, nome_cliente, endereco, cidade, cep, estado)
+INSERT INTO Cliente (cod_cliente, nome_cliente, endereco, cidade, cep, UF)
 VALUES ('00005', 'Guilhereme', 'Olimpo', 'Grecia', '18123-000', 'sp' );
 
-INSERT INTO Cliente (cod_cliente, nome_cliente, endereco, cidade, cep, estado)
+INSERT INTO Cliente (cod_cliente, nome_cliente, endereco, cidade, cep, UF)
 VALUES ('00004', 'Barbw', 'Campolinho', 'Votorantim', '18184-000', 'sp' );
 
 /*
