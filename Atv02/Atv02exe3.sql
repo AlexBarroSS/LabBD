@@ -1,0 +1,1 @@
+ALTER TABLE Cliente MODIFY (endereco varchar2(30));
