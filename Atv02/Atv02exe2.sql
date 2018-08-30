@@ -42,20 +42,25 @@ VALUES ('10005', 'Alex Afonso de B Silva', '10,23', '12500,43');
 Tabela Produto
 */
 
-INSERT INTO Produto (cod_produto, descricao, unidade, valor_unitario)
-VALUES ('101', 'caixa de sapato', 'kg', '100,50' ); 
+INSERT INTO Produto VALUES ('101', 'caixa de sapato', 'kg', '100,50' ); 
 
-INSERT INTO Produto (cod_produto, descricao, unidade, valor_unitario)
-VALUES ('102', 'caixa de doce', 'kg', '101,50' );
+INSERT INTO Produto VALUES ('102', 'caixa de doce', 'kg', '101,50' );
 
-INSERT INTO Produto (cod_produto, descricao, unidade, valor_unitario)
-VALUES ('103', 'caixa de algodao', 'kg', '210,54' );
+INSERT INTO Produto VALUES ('103', 'caixa de algodao', 'kg', '210,54' );
 
-INSERT INTO Produto (cod_produto, descricao, unidade, valor_unitario)
-VALUES ('104', 'café', 'kg', '191210,50' );
+INSERT INTO Produto VALUES ('104', 'café', 'kg', '191210,50' );
 
-INSERT INTO Produto (cod_produto, descricao, unidade, valor_unitario)
-VALUES ('105', 'caixa de laranja', 'kg', '3,05' );
+INSERT INTO Produto VALUES ('105', 'caixa de laranja', 'kg', '3,05' );
+
+INSERT INTO Produto VALUES ('111', 'caixa de acucar', 'cx', '12,99' ); 
+
+INSERT INTO Produto VALUES ('112', 'marshmallow', 'kg', '5,00' );
+
+INSERT INTO Produto VALUES ('113', 'sorvete de flocos', 'kg', '15,90' );
+
+INSERT INTO Produto VALUES ('114', 'agua', 'l', '2,00' );
+
+INSERT INTO Produto VALUES ('115', 'caixa de morango', 'kg', '3,99' );
 
 /*
 Tabela Pedido

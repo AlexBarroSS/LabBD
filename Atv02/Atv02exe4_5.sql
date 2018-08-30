@@ -30,3 +30,21 @@ Exercicio 8
 
 DELETE Produto 
 WHERE unidade = 'cx' AND valor_unitario < 50;
+
+/*
+Desafio 1
+*/
+
+SELECT cod_produto, descricao, 'Antes do aumento' quando, valor_unitario from produto
+UNION
+SELECT cod_produto, descricao, 'Depois do aumento' quando, valor_unitario *1.1 from produto;
+
+/*
+Desafio 2
+*/
+
+SELECT cod_produto, descricao, valor_unitario from produto
+UNION
+SELECT 0, 'Soma dos valores = ', SUM(valor_unitario) valor_unitario 
+FROM produto
+ORDER BY valor_unitario;
