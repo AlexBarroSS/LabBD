@@ -17,6 +17,9 @@ VALUES ('00005', 'Guilhereme', 'Olimpo', 'Grecia', '18123-000', 'sp' );
 INSERT INTO Cliente (cod_cliente, nome_cliente, endereco, cidade, cep, UF)
 VALUES ('00004', 'Barbw', 'Campolinho', 'Votorantim', '18184-000', 'sp' );
 
+INSERT INTO Cliente (cod_cliente, nome_cliente, endereco, cidade, cep, UF)
+VALUES ('00007', 'GuilhemeCpp', 'Olimpo', 'Sorocaba', '19123-000', 'sp' );
+
 /*
 Tabela Vendedor
 */
