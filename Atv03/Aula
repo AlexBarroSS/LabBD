@@ -1,0 +1,43 @@
+/*
+View
+
+            *Sub consultas*
+
+    Exemplo:
+
+    select nomecli FROM tb_clientes
+    where codcli in ( select codcli from tb_cliente);
+    
+    ^-- cliente que tem pedido 
+
+    select nomecli FROM tb_clientes
+    where codcli not in ( select codcli from tb_cliente);
+
+    ^-- cliente que nao tem pedido
+
+    **In e Not in: Possui ou não possui
+
+    **Exists: Se o resultado da subconsulta 
+    for verdadeiro ele vai devolver um ou mais linhas, 
+    se for falso ele nao retorna nada. 
+    (devolve nada)
+
+    Exemplo:
+    
+    select nome FROM tb_clientes
+    where exists ( select codcli from tb_pedido
+    where tb_pedido.codcli = tb_pedido.codcli);
+    );
+
+    Otimização:
+
+    select nome FROM tb_clientes
+    where exists ( select 1 from tb_pedido
+    where tb_pedido.codcli = tb_pedido.codcli);
+    );
+
+    ^-- Quando coloca o 1 no select da sub consulta o SGBD não compara o dado
+
+    **O not exists aparentemente é mais rápido porque não realiza comparação
+
+*/
