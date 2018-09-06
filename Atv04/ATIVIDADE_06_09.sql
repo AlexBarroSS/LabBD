@@ -40,29 +40,36 @@ GROUP BY  v.cod_vendedor, v.nome_vendedor;
 
 SELECT cidade
 FROM cliente
-WHERE cidade = (SELECT cidade FROM cliente WHERE nome_cliente = 'Joao da Silva');
+WHERE nome_cliente <> 'Joao da Silva'
+AND cidade = (
+    SELECT cidade 
+    FROM cliente 
+    WHERE nome_cliente = 'Joao da Silva'
+);
 
 -- exe 02 
 
 SELECT * 
 FROM produto
-WHERE valor_unitario > ( SELECT  AVG(valor_unitario) FROM produto);
+WHERE valor_unitario > (
+    SELECT  AVG(valor_unitario) 
+    FROM produto
+);
 
 -- exe 03
 
 SELECT c.cod_cliente, c.nome_cliente
-FROM cliente c, vendedor v, pedido p
-WHERE p.cod_cliente = c.cod_cliente
-    AND v.cod_vendedor = p.cod_vendedor
-    AND p.cod_vendedor = 10001
-    AND p.cod_cliente
+FROM cliente c
+INNER JOIN pedido p
+ON p.cod_cliente = c.cod_cliente
+WHERE c.cod_cliente  
 NOT IN (
-    SELECT c.cod_cliente 
-    FROM cliente c, vendedor v, pedido p
-    WHERE p.cod_cliente = c.cod_cliente
-    AND v.cod_vendedor = p.cod_vendedor
-    AND p.cod_vendedor <> 10001
+    SELECT cod_cliente 
+    FROM pedido p
+    WHERE p.cod_vendedor <> 10001
 );
+
+---->
 
 --exe 04
 
@@ -85,5 +92,8 @@ WHERE cod_vendedor
 NOT IN (
 SELECT cod_vendedor 
 FROM pedido
-WHERE to_char(prazo_entrega,'mm/yyyy') = '05/2017');
+WHERE to_char(prazo_entrega,'mm/yyyy') = '05/2017'
+);
+
+--exe 06
 
