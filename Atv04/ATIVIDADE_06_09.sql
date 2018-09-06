@@ -66,7 +66,7 @@ WHERE c.cod_cliente
 NOT IN (
     SELECT cod_cliente 
     FROM pedido p
-    WHERE p.cod_vendedor <> 10001
+    WHERE p.cod_vendedor <> 2
 );
 
 ---->
@@ -97,3 +97,36 @@ WHERE to_char(prazo_entrega,'mm/yyyy') = '05/2017'
 
 --exe 06
 
+SELECT v.nome_vendedor, v.cod_vendedor
+FROM vendedor v
+INNER JOIN pedido p
+ON p.cod_vendedor = v.cod_vendedor
+GROUP BY v.nome_vendedor, v.cod_vendedor
+HAVING COUNT(*) = (
+    SELECT MAX(COUNT(*))
+    FROM pedido
+    GROUP BY cod_vendedor
+);
+
+-- exe 08
+
+DELETE FROM item_pedido
+WHERE num_pedido 
+IN (
+    SELECT num_pedido
+    FROM pedido
+    WHERE cod_cliente = 2
+);
+
+-- exe 09
+
+UPDATE produto
+SET valor_unitario = valor_unitario * 0.8
+WHERE cod_produto
+NOT IN (
+    SELECT it.cod_produto
+    FROM pedido p
+    INNER  JOIN item_pedido it
+    ON it.num_pedido = p.num_pedido
+    WHERE to_char(prazo_entrega, 'yyyy') = '2017'
+);
