@@ -49,10 +49,3 @@ INNER JOIN produto pr
 ON pr.cod_produto = it.cod_produto
 WHERE pe.num_pedido = '123'
 
---exe 06
-
-SELECT c.nome_cliente, c.endereco
-FROM cliente c
-INNER JOIN pedido pe
-ON c.cod_cliente = pe.cod_cliente
-WHERE c.cidade = 'Itu'OR c.cidade = 'Sorocaba' AND pe.cod_vendedor = '10'
