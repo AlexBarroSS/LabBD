@@ -11,4 +11,3 @@ FROM produto
 WHERE valor_unitario > ( SELECT  AVG(valor_unitario) FROM produto);
 
 -- exe 03
-
