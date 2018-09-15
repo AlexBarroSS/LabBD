@@ -108,6 +108,14 @@ HAVING COUNT(*) = (
     GROUP BY cod_vendedor
 );
 
+-- exe 07
+
+SELECT c.nome_cliente, COUNT(num_pedido) AS total_pedidos
+FROM cliente c
+INNER JOIN pedido p
+ON p.cod_cliente = c.cod_cliente
+GROUP BY cod_cliente
+
 -- exe 08
 
 DELETE FROM item_pedido
