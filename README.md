@@ -1,11 +1,4 @@
-## LabBD
-Exercícios Banco de Dados Oracle
-
-### AtividadeS de Laboratório de Banco de Dados
-
-git clone
-
-## DATA
+## Atividades de Laboratório de Banco de Dados
 
 ### Atv 01
 
