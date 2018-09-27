@@ -1,106 +1,111 @@
-/*
-Tabela Cliente
-*/
+--exe 01
 
-INSERT INTO Cliente (cod_cliente, nome_cliente, endereco, cidade, cep, UF)
-VALUES ('00001', 'Alex Afonso', 'Campestre', 'Pilar do Sul', '18185-000', 'sp');
+SELECT v.cod_vendedor, v.nome_vendedor
+FROM vendedor v INNER JOIN pedido p
+ON v.cod_vendedor = p.cod_vendedor
+WHERE cod_cliente = '10'
 
-INSERT INTO Cliente (cod_cliente, nome_cliente, endereco, cidade, cep, UF)
-VALUES ('00002', 'Guxtavo', 'Centro', 'Sorocaba', '18181-000', 'sp' );
+--exe 02
 
-INSERT INTO Cliente (cod_cliente, nome_cliente, endereco, cidade, cep, UF)
-VALUES ('00003', 'Andure', 'Vargem grande', 'Paulista', '18183-000', 'sp');
+SELECT p.num_pedido, p.prazo_entrega, it.quantidade, pr.descricao
+FROM pedido p 
+INNER JOIN item_pedido it 
+ON p.num_pedido = it.num_pedido
+INNER JOIN produto pr
+ON it.cod_produto = pr.cod_produto
+WHERE pr.cod_produto = 100
 
-INSERT INTO Cliente (cod_cliente, nome_cliente, endereco, cidade, cep, UF)
-VALUES ('00005', 'Guilhereme', 'Olimpo', 'Grecia', '18123-000', 'sp' );
+--exe 03
 
-INSERT INTO Cliente (cod_cliente, nome_cliente, endereco, cidade, cep, UF)
-VALUES ('00004', 'Barbw', 'Campolinho', 'Votorantim', '18184-000', 'sp' );
+SELECT v.cod_vendedor, v.nome_vendedor
+FROM vendedor v 
+INNER JOIN pedido p
+ON v.cod_vendedor = p.cod_vendedor
+INNER JOIN cliente c
+ON c.cod_cliente = p.cod_cliente
+WHERE c.nome_cliente = 'Jose da Silva'
 
-INSERT INTO Cliente (cod_cliente, nome_cliente, endereco, cidade, cep, UF)
-VALUES ('00007', 'GuilhemeCpp', 'Olimpo', 'Sorocaba', '19123-000', 'sp' );
+--exe 04 
 
-/*
-Tabela Vendedor
-*/
-INSERT INTO Vendedor (cod_vendedor, nome_vendedor, faixa_comissao, salario_fixo)
-VALUES ('10001', 'Uno', '15,20', '11231,21');
+SELECT pe.num_pedido, pr.descricao, v.cod_vendedor, v.nome_vendedor, c.nome_cliente
+FROM vendedor v 
+INNER JOIN pedido pe
+ON v.cod_vendedor = pe.cod_vendedor
+INNER JOIN cliente c
+ON c.cod_cliente = pe.cod_cliente
+INNER JOIN item_pedido it
+ON pe.num_pedido = it.num_pedido
+INNER JOIN produto pr
+ON it.cod_produto = pr.cod_produto
+WHERE c.cidade = 'Sorocaba'
 
-INSERT INTO Vendedor (cod_vendedor, nome_vendedor, faixa_comissao, salario_fixo)
-VALUES ('10002', 'Vender Dor', '25,5', '7500,50');
+--exe 05
 
-INSERT INTO Vendedor (cod_vendedor, nome_vendedor, faixa_comissao, salario_fixo)
-VALUES ('10003', 'Comen ciante', '13,17', '12345,12');
+SELECT pr.cod_produto, pr.descricao, it.quantidade, pe.prazo_entrega
+FROM pedido pe
+INNER JOIN item_pedido it
+ON pe.num_pedido = it.num_pedido
+INNER JOIN produto pr
+ON pr.cod_produto = it.cod_produto
+WHERE pe.num_pedido = '123'
 
-INSERT INTO Vendedor (cod_vendedor, nome_vendedor, faixa_comissao, salario_fixo)
-VALUES ('10004', 'Jose Amendoin', '30,30', '3030,30');
+-- exe 05
 
-INSERT INTO Vendedor (cod_vendedor, nome_vendedor, faixa_comissao, salario_fixo)
-VALUES ('10005', 'Alex Afonso de B Silva', '10,23', '12500,43');
+SELECT MAX(quantidade) AS Maior
+FROM item_pedido
 
-/*
-Tabela Produto
-*/
+--exe 06
 
-INSERT INTO Produto VALUES ('101', 'caixa de sapato', 'kg', '100,50' ); 
+SELECT c.nome_cliente, c.endereco
+FROM cliente c
+INNER JOIN pedido pe
+ON c.cod_cliente = pe.cod_cliente
+WHERE c.cidade = 'Itu'OR c.cidade = 'Sorocaba' AND pe.cod_vendedor = '10'
 
-INSERT INTO Produto VALUES ('102', 'caixa de doce', 'kg', '101,50' );
+-- exe 2.3
 
-INSERT INTO Produto VALUES ('103', 'caixa de algodao', 'kg', '210,54' );
+-- exe 01
 
-INSERT INTO Produto VALUES ('104', 'café', 'kg', '191210,50' );
+SELECT MAX(valor_unitario) AS Maior_valor
+FROM produto
 
-INSERT INTO Produto VALUES ('105', 'caixa de laranja', 'kg', '3,05' );
+-- exe 02
 
-INSERT INTO Produto VALUES ('111', 'caixa de acucar', 'cx', '12,99' ); 
+SELECT MAX(valor_unitario) AS Maior_valor
+FROM produto
 
-INSERT INTO Produto VALUES ('112', 'marshmallow', 'kg', '5,00' );
+-- exe 03
 
-INSERT INTO Produto VALUES ('113', 'sorvete de flocos', 'kg', '15,90' );
+SELECT SUM(salario_fixo) AS Soma_salario
+FROM vendedor
 
-INSERT INTO Produto VALUES ('114', 'agua', 'l', '2,00' );
+-- exe 04
 
-INSERT INTO Produto VALUES ('115', 'caixa de morango', 'kg', '3,99' );
+SELECT COUNT(unidade) AS Unit
+FROM produto
+WHERE unidade = 'Lt'
 
-/*
-Tabela Pedido
-*/
+-- exe 05
 
-INSERT INTO Pedido (num_pedido, prazo_entrega, cod_cliente, cod_vendedor)
-VALUES('301', '11-JAN-1997', '00001', '10001');
+SELECT COUNT(*) AS Cont_cod
+FROM cliente
+GROUP BY cidade;
 
-INSERT INTO Pedido (num_pedido, prazo_entrega, cod_cliente, cod_vendedor)
-VALUES('302', '11-JAN-2007', '00001', '10001');
+-- exe 06
 
-INSERT INTO Pedido (num_pedido, prazo_entrega, cod_cliente, cod_vendedor)
-VALUES('303', '11-JAN-2008', '00002', '10001');
+SELECT COUNT(*) AS Pedido_vendas
+FROM vendedor v, pedido p
+WHERE v.cod_vendedor = p.cod_vendedor
 
-INSERT INTO Pedido (num_pedido, prazo_entrega, cod_cliente, cod_vendedor)
-VALUES('304', '11-JAN-2009', '00003', '10002');
+-- exe 07
 
-INSERT INTO Pedido (num_pedido, prazo_entrega, cod_cliente, cod_vendedor)
-VALUES ('305', '11-JAN-2009', '00001', '10005');
+SELECT MAX(valor_unitario) AS maior_unit, MIN(valor_unitario) AS menor_unit
+FROM produto
+GROUP BY unidade;
 
-/*
-Tabela Item Pedido
-*/
+-- exe 08
 
-INSERT INTO Item_Pedido(cod_produto, num_pedido, quantidade)
-VALUES ('105','305','12345');
-
-INSERT INTO Item_Pedido(cod_produto, num_pedido, quantidade)
-VALUES('104','304','2');
-
-INSERT INTO Item_Pedido(cod_produto, num_pedido, quantidade)
-VALUES('102','303','4');
-
-INSERT INTO Item_Pedido(cod_produto, num_pedido, quantidade)
-VALUES('102','302','8');
-
-INSERT INTO Item_Pedido(cod_produto, num_pedido, quantidade)
-VALUES('101','301','7');
-
-
-
-
-
+SELECT COUNT(*) AS numero_clientes
+FROM cliente
+GROUP BY cidade
+HAVING COUNT(*) > 4;
