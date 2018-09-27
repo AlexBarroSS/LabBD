@@ -1,3 +1,8 @@
+/*
+PROCEDURE
+    Exibir quantidade de compras para cada cliente
+*/
+
 exec cont_pedidos(34567);
 select * from tberro;
 select * from tab_mensagem;
