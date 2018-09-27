@@ -1,5 +1,5 @@
 /*
-PROCEDURE
+PROCEDURE:
     Exibir quantidade de compras para cada cliente
 */
 
