@@ -1,6 +1,7 @@
 CREATE OR REPLACE procedure verifica_pedidos(p_codpro produto.cod_produto%TYPE)
 AS 
     v_tot_ped NUMBER;
+    v_descricao produto.descricao%TYPE
     
 BEGIN
    
@@ -12,6 +13,11 @@ BEGIN
     
     IF v_tot_ped = 0 THEN
     
+        SELECT descricao 
+        INTO v_descricao
+        FROM produto 
+        WHERE cod_produto = p_codpro
+
         INSERT INTO tablog
         VALUES(
             SYSDATE,
