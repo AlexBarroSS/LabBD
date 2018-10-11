@@ -1,3 +1,5 @@
+//exe 04
+
 CREATE OR REPLACE procedure verifica_pedidos(p_codpro produto.cod_produto%TYPE)
 AS 
     v_tot_ped NUMBER;
