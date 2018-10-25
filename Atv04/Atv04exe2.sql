@@ -1,7 +1,5 @@
 //exe01
 
-
-
 //exe02
 
 //exe03
@@ -25,6 +23,7 @@ BEGIN
     
         INSERT INTO tablog
         VALUES( SYSDATE, p_codpro || ' ', v_descricao);
+        
         DELETE produto
         WHERE cod_produto = p_codpro;
 

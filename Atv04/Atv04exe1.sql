@@ -13,6 +13,7 @@ CREATE OR REPLACE procedure cont_pedidos(p_codcli NUMBER)
 AS 
     v_tot_ped NUMBER;
     v_nome_cli cliente.nome_cliente%TYPE;
+    
 BEGIN
    
     SELECT count(cod_cliente) INTO v_tot_ped 
