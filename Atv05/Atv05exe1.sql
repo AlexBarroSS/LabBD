@@ -27,8 +27,7 @@ BEGIN
     v_anos = (sysdate - v_idade)/365;
 	
 	IF v_anos > 65 THEN
-		tipo = 'IDOSO';
-		
+		tipo = 'IDOSO';		
 	ELSE
 		tipo = 'NÃO IDOSO';
 	end IF;
