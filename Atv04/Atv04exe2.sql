@@ -6,7 +6,7 @@
 
 //exe04
 
-CREATE OR REPLACE procedure verifica_pedidos(p_codpro NUMBER)
+CREATE OR REPLACE procedure verifica_pedidos(p_codpro produto.cod_produto%TYPE)
 AS 
     v_tot_ped NUMBER;
     v_descricao produto.descricao%TYPE;
@@ -22,10 +22,15 @@ BEGIN
     IF v_tot_ped = 0 THEN
     
         INSERT INTO tablog
-        VALUES( SYSDATE, p_codpro || ' ', v_descricao);
+        VALUES( SYSDATE, p_codpro || 'excluido ', v_descricao);
         
         DELETE produto
         WHERE cod_produto = p_codpro;
+    
+    ELSIF v_tot_ped > 0 THEN
+    
+        INSERT INTO tablog
+        VALUES( SYSDATE, p_codpro || 'tem ' || v_tot_ped, v_descricao);
 
     END IF;
 
@@ -34,3 +39,7 @@ EXCEPTION
       INSERT INTO tberro VALUES (SYSDATE, ' Produto nao encontrado ' || p_codpro );
 
 END;
+
+EXEC verifica_pedidos(101);
+
+SELECT * FROM tablog;
