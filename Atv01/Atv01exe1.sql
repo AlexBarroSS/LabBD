@@ -39,4 +39,6 @@ ALTER TABLE Pedido ADD CONSTRAINT FK_Pedido_cod_cliente FOREIGN KEY (cod_cliente
 
 ALTER TABLE Item_Pedido ADD CONSTRAINT FK_Item_Pedido_cod_produto FOREIGN KEY (cod_produto) REFERENCES Produto;
 ALTER TABLE Item_Pedido ADD CONSTRAINT FK_Item_Pedido_cod_pedido FOREIGN KEY (num_pedido) REFERENCES Pedido;
+
 ALTER TABLE Item_Pedido ADD CONSTRAINT PKC_Item_Pedido_cod_pedido PRIMARY KEY (num_pedido, cod_produto);
+

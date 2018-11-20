@@ -34,3 +34,39 @@ SELECT * FROM tab_logteste;
 
 DELETE produto
 WHERE cod_produto = 9;
+
+/*
+              ATIVIDADE
+*/
+
+//exe1
+
+Create or replace  trigger tr_desconto
+before insert on item_pedido
+For each row
+declare
+Vtotal number(5);
+Vcodcli  pedido.cod_cliente%type;
+begin
+
+select count(*) into Vtotal from pedido
+where codcli = Vcodcli;
+
+select 
+from 
+where 
+
+If Vtotal > 2 Then
+:new.valor_unitario := :new.valor_unitario * 0.85;
+end if;
+end;
+
+select * from tb_pedido
+select * from tb_item_pedido
+
+insert into tb_item_pedido values (101,02,6,20.00);
+
+
+show errors
+
+ALTER TABLE item_pedido MODIFY (preco_unit NUMBER(7,2));
