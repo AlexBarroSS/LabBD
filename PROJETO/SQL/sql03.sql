@@ -25,7 +25,37 @@ select C.nome, T.siglaCurso, count(t.siglaCurso) as quantidade from tb_Turma T
     group by T.periodo, P.nome
     order by T.periodo;
 
--- 15 -- dissertativa -- FALTA
+-- 15 -- dissertativa 
+
+/*
+As visões são alterável quando não utilizam utilizam junções ou quando um campo é definido por uma expressão , assim: 
+
+-- É alteravel, pois não utiliza junções nem possui um campo definido por uma expressão
+
+create or replace view PessoaAluno as
+select * from tb_Pessoa where tipoPessoa = 'Aluno';
+
+-- É alteravel, pois não utiliza junções nem possui um campo definido por uma expressão
+
+create or replace view PessoaInstrutor as
+select * from tb_Pessoa where tipoPessoa = 'Instrutor';
+
+-- Não é alteravel, pois a visão é resultado de uma junção
+
+create or replace view AlunoPeriodo as 
+select P.nome, T.periodo from tb_Pessoa P
+    inner join tb_Aluno A on A.cpf = P.cpf
+    inner join tb_Matricula M on A.cpf = M.cpf
+    inner join tb_Turma T on T.siglaTurma = M.siglaTurma
+    group by T.periodo, P.nome
+    order by T.periodo;
+
+-- Não é alteravel, pois possui um campo definido por uma expressão
+
+create or replace view Pessoa_EnderecoCompleto as
+select cpf, endereco || ' - ' || numero || ' - ' || bairro || ' - ' || Cidade || ' - ' || Estado || ' - ' || CEP as Endereco_Completo from tb_pessoa;
+
+*/
 
 -- 17 Objetivo: selecionar alunos que se matricularam em turmas noturnas e exibir seus nomes e sigla da turma
 
