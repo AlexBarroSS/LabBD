@@ -38,3 +38,4 @@ Select P.nome, M.siglaTurma from tb_Pessoa P
     inner join tb_Aluno A on A.cpf = P.cpf
     inner join tb_Matricula M on A.cpf = M.cpf
     inner join tb_Turma T on T.siglaTurma = M.siglaTurma and (T.periodo = 'Integral' or T.periodo = 'Diurno');
+
