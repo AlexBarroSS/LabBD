@@ -25,7 +25,7 @@ select C.nome, T.siglaCurso, count(t.siglaCurso) as quantidade from tb_Turma T
     group by T.periodo, P.nome
     order by T.periodo;
 
--- 15 -- dissertativa
+-- 15 -- dissertativa -- FALTA
 
 -- 17 Objetivo: selecionar alunos que se matricularam em turmas noturnas e exibir seus nomes e sigla da turma
 
@@ -38,4 +38,46 @@ Select P.nome, M.siglaTurma from tb_Pessoa P
     inner join tb_Aluno A on A.cpf = P.cpf
     inner join tb_Matricula M on A.cpf = M.cpf
     inner join tb_Turma T on T.siglaTurma = M.siglaTurma and (T.periodo = 'Integral' or T.periodo = 'Diurno');
+
+-- 20 - Objetivo: Exibir o nome e a turma dos alunos que tem aula com um instrutor na area de história
+
+select P.nome as Aluno, T.siglaTurma as Turma from tb_Pessoa P
+    inner join tb_Matricula M on P.cpf = M.cpf
+    inner join tb_Turma T on M.siglaTurma = T.siglaTurma
+    where T.cpfInstrutor in (select cpf from tb_Instrutor where areaAtuacao = 'História'); 
+
+-- 22 - Objetivo: Listar nome dos alunos pagaram a matricula a vista
+
+select P.nome as Aluno, T.siglaTurma as Turma from tb_Pessoa P
+    inner join tb_Matricula M on M.cpf = P.cpf
+    inner join tb_Turma T on M.siglaTurma = T.siglaTurma
+    where exists (select codAvista from tb_Avista V where V.codAvista = M.codAvista);
+
+-- 28 - Objetivo: Gatilho para registrar alterações no registro valor da tabela tb_Avista
+
+create table tb_log(
+    idLog number(10) primary key,
+    horario date,
+    chave varchar2(20),
+    tabela varchar2(20),
+    usuario varchar2(20));
+
+create sequence seqtblog;
+
+create or replace trigger TR_VeriValPagAvista
+before update of valor or insert or delete on tb_Avista
+for each row
+declare
+    v_chaveMatricula tb_Matricula.cpf%type;
+begin
+
+    if updating then
+        insert into tb_log values (seqtblog.nextval, sysdate,'update ',  :new.codAvista, 'tb_Avista', user);
+    elsif deleting then
+        insert into tb_log values (seqtblog.nextval,  sysdate, 'delete ', :old.codAvista, 'tb_Avista', user);
+    else 
+        insert into tb_log values (seqtblog.nextval,  sysdate, 'insert ', :new.codAvista, 'tb_Avista', user);
+    end if;
+
+end TR_VeriValPagAvista;
 
